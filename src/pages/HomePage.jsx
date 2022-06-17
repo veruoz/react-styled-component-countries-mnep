@@ -32,6 +32,12 @@ const HomePage = ({ countries, setCountries }) => {
         // загрузка стран с проверкой при переходе с других страниц SPA
         if (!countries.length) axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data))
     }, []);
+
+    // первое появление стран без фильтра
+    React.useEffect(() => {
+        handleSearch()
+    }, [countries])
+
     return (
         <>
             <Controls onSearch={handleSearch} />
